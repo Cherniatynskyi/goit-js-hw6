@@ -10,20 +10,25 @@ const buttonDestroy = document.querySelector("button[data-destroy]")
 const boxesDiv = document.querySelector("#boxes")
 
 buttonCreate.addEventListener('click', createBoxes)
-
 buttonDestroy.addEventListener('click', deleteBoxes)
+
+let minSquareSize = 30
 
 function createBoxes(amount) {
     amount = inputEl.value
     for (let i = 0; i < amount; i += 1) {
         const el = document.createElement("div")
         el.style.backgroundColor = getRandomHexColor()
-        el.style.height = `${i*10+30}px`
-        el.style.width = `${i*10+30}px`  
+        el.style.height = `${i* 10+ minSquareSize}px`
+        el.style.width = `${i * 10 + minSquareSize}px` 
+        var lastElInOpeartion = i * 10 + minSquareSize
         boxesDiv.append(el)
     }
+    minSquareSize = 10 + lastElInOpeartion
+
 }
 
 function deleteBoxes() {
     boxesDiv.remove("div")
+    minSquareSize = 30
 }
